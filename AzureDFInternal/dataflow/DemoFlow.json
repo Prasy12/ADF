@@ -1,0 +1,41 @@
+{
+	"name": "DemoFlow",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "FinancialSamples",
+						"type": "DatasetReference"
+					},
+					"name": "Input"
+				}
+			],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "AzureSqlTableDataset",
+						"type": "DatasetReference"
+					},
+					"name": "sink1"
+				}
+			],
+			"transformations": [
+				{
+					"name": "FilterCountry"
+				},
+				{
+					"name": "Sort"
+				},
+				{
+					"name": "FilterSegment"
+				},
+				{
+					"name": "Aggregate"
+				}
+			],
+			"script": "source(output(\n\t\tSegment as string,\n\t\tCountry as string,\n\t\t{ Product } as string,\n\t\t{ Discount Band } as string,\n\t\t{Units Sold} as string,\n\t\t{  Sales } as integer,\n\t\t{ Profit } as integer\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false,\n\tpartitionBy('roundRobin', 2)) ~> Input\nInput filter(startsWith(Country,'Canada')) ~> FilterCountry\nFilterCountry sort(asc(Segment, true)) ~> Sort\nSort filter(startsWith(Segment,'Government')) ~> FilterSegment\nFilterSegment aggregate(groupBy({ Product } = { Product }),\n\t{  Sales } = sum( { Profit } )) ~> Aggregate\nAggregate sink(input(\n\t\tProduct_ID as integer,\n\t\tProduct_Name as string,\n\t\tRetail_Price as double,\n\t\tProduct_Hierarchy_ID as integer,\n\t\tLoaddate as timestamp,\n\t\tFilename as string\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false,\n\tdeletable:false,\n\tinsertable:true,\n\tupdateable:false,\n\tupsertable:false,\n\tformat: 'table',\n\tskipDuplicateMapInputs: true,\n\tskipDuplicateMapOutputs: true) ~> sink1"
+		}
+	}
+}

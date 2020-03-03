@@ -1,0 +1,453 @@
+{
+	"name": "Testing",
+	"properties": {
+		"activities": [
+			{
+				"name": "Copy data",
+				"type": "Copy",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [
+					{
+						"name": "Source",
+						"value": "webtoblob//Product.csv"
+					},
+					{
+						"name": "Destination",
+						"value": "dbo.OutputProduct"
+					}
+				],
+				"typeProperties": {
+					"source": {
+						"type": "DelimitedTextSource",
+						"storeSettings": {
+							"type": "AzureBlobStorageReadSettings",
+							"recursive": true,
+							"enablePartitionDiscovery": false
+						},
+						"formatSettings": {
+							"type": "DelimitedTextReadSettings",
+							"skipLineCount": 0
+						}
+					},
+					"sink": {
+						"type": "DelimitedTextSink",
+						"storeSettings": {
+							"type": "AzureBlobStorageWriteSettings",
+							"blockSizeInMB": 6
+						},
+						"formatSettings": {
+							"type": "DelimitedTextWriteSettings",
+							"quoteAllText": true,
+							"fileExtension": ".txt"
+						}
+					},
+					"enableStaging": true,
+					"stagingSettings": {
+						"linkedServiceName": {
+							"referenceName": "AzureBlobStorageLS",
+							"type": "LinkedServiceReference"
+						},
+						"path": "onedriveblob",
+						"enableCompression": true
+					},
+					"dataIntegrationUnits": 4,
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"name": "Emp ID",
+									"type": "String"
+								},
+								"sink": {
+									"name": "Emp ID",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "Name Prefix",
+									"type": "String"
+								},
+								"sink": {
+									"name": "Name Prefix",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "First Name",
+									"type": "String"
+								},
+								"sink": {
+									"name": "First Name",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "Middle Initial",
+									"type": "String"
+								},
+								"sink": {
+									"name": "Middle Initial",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "Last Name",
+									"type": "String"
+								},
+								"sink": {
+									"name": "Last Name",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "Gender",
+									"type": "String"
+								},
+								"sink": {
+									"name": "Gender",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "E Mail",
+									"type": "String"
+								},
+								"sink": {
+									"name": "E Mail",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "Father's Name",
+									"type": "String"
+								},
+								"sink": {
+									"name": "Father's Name",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "Mother's Name",
+									"type": "String"
+								},
+								"sink": {
+									"name": "Mother's Name",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "Mother's Maiden Name",
+									"type": "String"
+								},
+								"sink": {
+									"name": "Mother's Maiden Name",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "Date of Birth",
+									"type": "String"
+								},
+								"sink": {
+									"name": "Date of Birth",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "Time of Birth",
+									"type": "String"
+								},
+								"sink": {
+									"name": "Time of Birth",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "Age in Yrs.",
+									"type": "String"
+								},
+								"sink": {
+									"name": "Age in Yrs.",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "Weight in Kgs.",
+									"type": "String"
+								},
+								"sink": {
+									"name": "Weight in Kgs.",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "Date of Joining",
+									"type": "String"
+								},
+								"sink": {
+									"name": "Date of Joining",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "Quarter of Joining",
+									"type": "String"
+								},
+								"sink": {
+									"name": "Quarter of Joining",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "Half of Joining",
+									"type": "String"
+								},
+								"sink": {
+									"name": "Half of Joining",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "Year of Joining",
+									"type": "String"
+								},
+								"sink": {
+									"name": "Year of Joining",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "Month of Joining",
+									"type": "String"
+								},
+								"sink": {
+									"name": "Month of Joining",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "Month Name of Joining",
+									"type": "String"
+								},
+								"sink": {
+									"name": "Month Name of Joining",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "Short Month",
+									"type": "String"
+								},
+								"sink": {
+									"name": "Short Month",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "Day of Joining",
+									"type": "String"
+								},
+								"sink": {
+									"name": "Day of Joining",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "DOW of Joining",
+									"type": "String"
+								},
+								"sink": {
+									"name": "DOW of Joining",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "Short DOW",
+									"type": "String"
+								},
+								"sink": {
+									"name": "Short DOW",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "Age in Company (Years)",
+									"type": "String"
+								},
+								"sink": {
+									"name": "Age in Company (Years)",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "Salary",
+									"type": "String"
+								},
+								"sink": {
+									"name": "Salary",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "Last % Hike",
+									"type": "String"
+								},
+								"sink": {
+									"name": "Last % Hike",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "SSN",
+									"type": "String"
+								},
+								"sink": {
+									"name": "SSN",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "Phone No. ",
+									"type": "String"
+								},
+								"sink": {
+									"name": "Phone No. ",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "Place Name",
+									"type": "String"
+								},
+								"sink": {
+									"name": "Place Name",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "County",
+									"type": "String"
+								},
+								"sink": {
+									"name": "County",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "City",
+									"type": "String"
+								},
+								"sink": {
+									"name": "City",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "State",
+									"type": "String"
+								},
+								"sink": {
+									"name": "State",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "Zip",
+									"type": "String"
+								},
+								"sink": {
+									"name": "Zip",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "Region",
+									"type": "String"
+								},
+								"sink": {
+									"name": "Region",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "User Name",
+									"type": "String"
+								},
+								"sink": {
+									"name": "User Name",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "Password",
+									"type": "String"
+								},
+								"sink": {
+									"name": "Password",
+									"type": "String"
+								}
+							}
+						]
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "TestInputData",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "TestOutputData",
+						"type": "DatasetReference"
+					}
+				]
+			}
+		],
+		"annotations": []
+	}
+}

@@ -1,0 +1,54 @@
+{
+	"name": "LocalSQLOutputTable",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "SqlServerCommonLS",
+			"type": "LinkedServiceReference",
+			"parameters": {
+				"DBName": "AzureDFSampleCanada"
+			}
+		},
+		"annotations": [],
+		"type": "SqlServerTable",
+		"schema": [
+			{
+				"name": "Segment",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Country",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Product",
+				"type": "nvarchar"
+			},
+			{
+				"name": "DiscountBand",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Sales",
+				"type": "money",
+				"precision": 19,
+				"scale": 4
+			},
+			{
+				"name": "UnitsSold",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "Profit",
+				"type": "money",
+				"precision": 19,
+				"scale": 4
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "SalesCanada"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

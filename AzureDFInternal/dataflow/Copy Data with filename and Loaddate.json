@@ -1,0 +1,32 @@
+{
+	"name": "Copy Data with filename and Loaddate",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "AzureBlobProductDataset",
+						"type": "DatasetReference"
+					},
+					"name": "Input"
+				}
+			],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "AzureSqlTableDataset",
+						"type": "DatasetReference"
+					},
+					"name": "Output"
+				}
+			],
+			"transformations": [
+				{
+					"name": "Loaddate"
+				}
+			],
+			"script": "source(output(\n\t\tProduct_ID as integer,\n\t\tProduct_Name as string,\n\t\tRetail_Price as integer,\n\t\tProduct_Hieracrchy_ID as integer\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false,\n\trowUrlColumn: 'Filename') ~> Input\nInput derive(Loaddate = currentUTC()) ~> Loaddate\nLoaddate sink(input(\n\t\tProduct_ID as integer,\n\t\tProduct_Name as string,\n\t\tRetail_Price as double,\n\t\tProduct_Hierarchy_ID as integer,\n\t\tLoaddate as timestamp,\n\t\tFilename as string\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false,\n\tdeletable:false,\n\tinsertable:true,\n\tupdateable:false,\n\tupsertable:false,\n\tformat: 'table',\n\tmapColumn(\n\t\tProduct_ID,\n\t\tProduct_Name,\n\t\tRetail_Price,\n\t\tProduct_Hierarchy_ID = Product_Hieracrchy_ID,\n\t\tLoaddate,\n\t\tFilename\n\t),\n\tskipDuplicateMapInputs: true,\n\tskipDuplicateMapOutputs: true) ~> Output"
+		}
+	}
+}

@@ -1,0 +1,45 @@
+{
+	"name": "SSIS-Runtime",
+	"properties": {
+		"type": "Managed",
+		"typeProperties": {
+			"computeProperties": {
+				"location": "Central US",
+				"nodeSize": "Standard_D8_v3",
+				"numberOfNodes": 2,
+				"maxParallelExecutionsPerNode": 8,
+				"vNetProperties": {
+					"vNetId": "/subscriptions/534f26e9-d27e-4000-b0e6-c9d36adac7ad/resourceGroups/PsiogInternal/providers/Microsoft.Network/virtualNetworks/psioginternal",
+					"subnet": "default",
+					"publicIPs": [
+						"",
+						""
+					]
+				}
+			},
+			"ssisProperties": {
+				"catalogInfo": {
+					"catalogServerEndpoint": "psiac001.database.windows.net",
+					"catalogAdminUserName": "Prasy",
+					"catalogAdminPassword": {
+						"type": "SecureString",
+						"value": "**********"
+					},
+					"catalogPricingTier": "S1"
+				},
+				"edition": "Standard",
+				"licenseType": "BasePrice",
+				"dataProxyProperties": {
+					"connectVia": {
+						"type": "IntegrationRuntimeReference",
+						"referenceName": "SHIR"
+					},
+					"stagingLinkedService": {
+						"type": "LinkedServiceReference",
+						"referenceName": "AzureBlobStorageLS"
+					}
+				}
+			}
+		}
+	}
+}

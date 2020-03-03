@@ -1,0 +1,16 @@
+{
+	"name": "SqlServerTableInputTable",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "SqlServerCommonLS",
+			"type": "LinkedServiceReference",
+			"parameters": {
+				"DBName": "Event_Management"
+			}
+		},
+		"annotations": [],
+		"type": "SqlServerTable",
+		"schema": []
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

@@ -1,0 +1,21 @@
+{
+	"name": "SqlServerCommonLS",
+	"type": "Microsoft.DataFactory/factories/linkedservices",
+	"properties": {
+		"parameters": {
+			"DBName": {
+				"type": "String"
+			}
+		},
+		"annotations": [],
+		"type": "SqlServer",
+		"typeProperties": {
+			"connectionString": "integrated security=False;data source=PSIACR018;initial catalog=@{linkedService().DBName};user id=sa",
+			"encryptedCredential": "eyJDcmVkZW50aWFsSWQiOiIzNTMyMTVjMC1lMjQzLTRiNWQtOWY2My01MjE1NzdhOTc4ZWMiLCJWZXJzaW9uIjoiMi4wIiwiQ2xhc3NUeXBlIjoiTWljcm9zb2Z0LkRhdGFQcm94eS5Db3JlLkludGVyU2VydmljZURhdGFDb250cmFjdC5DcmVkZW50aWFsU1UwNkNZMTQifQ=="
+		},
+		"connectVia": {
+			"referenceName": "SHIR",
+			"type": "IntegrationRuntimeReference"
+		}
+	}
+}

@@ -1,0 +1,34 @@
+{
+	"name": "SqlServerTableOuptutTable",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "SqlServerCommonLS",
+			"type": "LinkedServiceReference",
+			"parameters": {
+				"DBName": "DFOutputDB"
+			}
+		},
+		"parameters": {
+			"DWTableName": {
+				"type": "string"
+			},
+			"DWTableSchema": {
+				"type": "string"
+			}
+		},
+		"annotations": [],
+		"type": "SqlServerTable",
+		"schema": [],
+		"typeProperties": {
+			"schema": {
+				"value": "@dataset().DWTableSchema",
+				"type": "Expression"
+			},
+			"table": {
+				"value": "@dataset().DWTableName",
+				"type": "Expression"
+			}
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

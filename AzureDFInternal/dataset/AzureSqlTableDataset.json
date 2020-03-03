@@ -1,0 +1,50 @@
+{
+	"name": "AzureSqlTableDataset",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureProductDBLS",
+			"type": "LinkedServiceReference",
+			"parameters": {
+				"DBNAME": "AzureSampleDB"
+			}
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "Product_ID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "Product_Name",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Retail_Price",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "Product_Hierarchy_ID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "Loaddate",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			},
+			{
+				"name": "Filename",
+				"type": "nvarchar"
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "Product"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

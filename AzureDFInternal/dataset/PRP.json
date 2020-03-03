@@ -1,0 +1,18 @@
+{
+	"name": "PRP",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureBlobStorage1",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Binary",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": "Product_Hierarchy.txt",
+				"container": "onedriveblob"
+			}
+		}
+	}
+}
